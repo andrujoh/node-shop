@@ -7,6 +7,7 @@ const passport = require('passport');
 const logger = require('morgan');
 const User = require('./models/user');
 const session = require('express-session');
+const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -16,6 +17,14 @@ const reviewsRouter = require('./routes/reviews');
 require('dotenv').config();
 
 const app = express();
+
+mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useCreateIndex: true });
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error'));
+db.once('open', () => {
+  // console.log(`we're connected`);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
