@@ -1,0 +1,8 @@
+<h1>Posts!</h1>
+
+<% posts.forEach(post => { %>
+<a href="/posts/<%= post.id %>"><h3><%= post.title %></h3></a>
+<p>Price: <%= post.price %></p>
+<p><%= post.description %></p>
+<p>Location: <%= post.location %></p>
+<% }) %>

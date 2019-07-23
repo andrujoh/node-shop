@@ -1,0 +1,10 @@
+<h1>Show</h1>
+<a href="/posts/<%= post.id %>/edit">Edit</a>
+<h3><%= post.title %></h3>
+<p>Price: <%= post.price %></p>
+<p><%= post.description %></p>
+<p>Location: <%= post.location %></p>
+
+<form action="/posts/<%= post.id %>?_method=DELETE" method="POST">
+  <button type="submit">Delete Post</button>
+</form>

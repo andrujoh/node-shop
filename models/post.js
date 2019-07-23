@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const PostSchema = new Schema({
-  email: String,
+  title: String,
   price: String,
   description: String,
   images: [String],
