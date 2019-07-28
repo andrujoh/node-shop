@@ -1,12 +1,16 @@
 <h1>Edit!</h1>
 
-<form action="/posts/<%= post.id %>?_method=PUT" method="POST">
+<form action="/posts/<%= post.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
   <label for="title">Title</label>
   <input type="text" name="post[title]" id="title" value="<%= post.title %>" />
   <br />
   <label for="price">Price</label>
   <input type="text" name="post[price]" id="price" value="<%= post.price %>" />
   <br />
+  <div>
+    <label for="images">Images</label>
+    <input type="file" accept="images/*" id="images" name="images" multiple />
+  </div>
   <label for="description">Description</label>
   <textarea name="post[description]" id="description"><%= post.description %></textarea>
   <br />

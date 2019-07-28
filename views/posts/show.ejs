@@ -4,6 +4,11 @@
 <p>Price: <%= post.price %></p>
 <p><%= post.description %></p>
 <p>Location: <%= post.location %></p>
+<div>
+  Images: <% post.images.forEach(image => { %>
+  <img src="<%= image.url %>" alt="Presentation" width="200px" />
+  <% }) %>
+</div>
 
 <form action="/posts/<%= post.id %>?_method=DELETE" method="POST">
   <button type="submit">Delete Post</button>

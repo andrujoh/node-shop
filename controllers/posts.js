@@ -1,4 +1,11 @@
 const Post = require('../models/post');
+const cloudinary = require('cloudinary');
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_API_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 module.exports = {
   async postIndex(req, res, next) {
@@ -9,6 +16,14 @@ module.exports = {
     res.render('posts/new');
   },
   async postCreate(req, res, next) {
+    req.body.post.images = [];
+    for (const file of req.files) {
+      let image = await cloudinary.v2.uploader.upload(file.path);
+      req.body.post.images.push({
+        url: image.secure_url,
+        public_id: image.public_id
+      });
+    }
     const post = await Post.create(req.body.post);
     res.redirect(`/posts/${post.id}`);
   },
