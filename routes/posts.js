@@ -22,7 +22,7 @@ router.get('/new', asyncErrorHandler(postNew));
 router
   .route('/:id')
   .get(asyncErrorHandler(postShow))
-  .put(asyncErrorHandler(postUpdate))
+  .put(upload.array('images', 4), asyncErrorHandler(postUpdate))
   .delete(asyncErrorHandler(postDelete));
 
 router.get('/:id/edit', asyncErrorHandler(postEdit));
